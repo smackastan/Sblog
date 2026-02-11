@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="About - Ashman Lab" description="About Andrew Ashman and the Lab">
+	<div class="prose prose-lg prose-stone max-w-none">
+        <h1 class="text-4xl font-serif font-bold text-gray-900 mb-8">About the Lab</h1>
+        
+        <div class="flex flex-col md:flex-row gap-8 items-start not-prose mb-12">
+             <img src="/Sblog/blog-placeholder-about.jpg" alt="Andrew Ashman" class="w-full md:w-1/3 rounded-lg shadow-md aspect-square object-cover bg-gray-200" />
+             <div>
+                 <p class="text-xl text-gray-600 leading-relaxed mb-6">
+                     Hello! I'm <strong>Andrew Ashman</strong>, a Data Scientist and AI Researcher.
+                 </p>
+                 <p class="text-gray-600 mb-6">
+                     This "Research Lab" is a digital portfolio designed to showcase my work in a structured, academic format. 
+                     I focus on machine learning, natural language processing, and scalable data architectures.
+                 </p>
+                 <div class="flex gap-4">
+                     <a href="https://github.com/smackastan" class="text-gray-900 hover:text-accent font-bold">GitHub</a>
+                     <a href="https://linkedin.com/in/andrewashman" class="text-gray-900 hover:text-accent font-bold">LinkedIn</a>
+                     <a href="mailto:andrew@example.com" class="text-gray-900 hover:text-accent font-bold">Email</a>
+                 </div>
+             </div>
+        </div>
+
+        <h2>Methodology</h2>
+        <p>
+            My approach to data science combines rigorous statistical analysis with modern software engineering practices.
+            I believe in reproducible research, clean code, and intuitive visualizations.
+        </p>
+
+        <h2>Tech Stack</h2>
+        <ul>
+            <li><strong>Languages:</strong> Python, R, SQL, TypeScript</li>
+            <li><strong>Frameworks:</strong> PyTorch, Scikit-learn, Astro, Tailwind CSS</li>
+            <li><strong>Tools:</strong> Docker, Kubernetes, AWS, GitHub Actions</li>
+        </ul>
+        
+        <blockquote>
+            "Data is a precious thing and will last longer than the systems themselves."
+            <footer>— Tim Berners-Lee</footer>
+        </blockquote>
+	</div>
+</BaseLayout>
