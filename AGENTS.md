@@ -30,10 +30,33 @@ This file contains technical instructions for AI agents working on this Data Sci
 - **Code**: Use standard markdown fences with language tags (e.g., \`\`\`python).
 - **Math**: Use `$` for inline math and `$$` for block math.
 
-## Build Pipeline
-- Run `npm run build` to generate the static site in `dist/`.
-- The GitHub Action `.github/workflows/deploy.yml` handles deployment to GitHub Pages.
-- NOTE: The `withastro/action` requires the `GITHUB_TOKEN` to be set in the repo secrets/permissions.
+## GitHub & Deployment
+
+### Repository Information
+- **URL**: `https://github.com/smackastan/Sblog`
+- **Branch**: `main` (default for deployment)
+- **Deployment URL**: `https://smackastan.github.io/Sblog/`
+
+### Authentication for Agents
+FUTURE AGENT: If you encounter authentication issues when pushing to this repository, follow these steps:
+1. **Token Requirement**: You need a GitHub Personal Access Token (classic) with at least `repo` and `workflow` scopes.
+   - `repo`: For pushing code.
+   - `workflow`: For modifying `.github/workflows/` files.
+2. **Login Command**:
+   ```bash
+   # If you have the token string from the user:
+   echo "YOUR_TOKEN" | gh auth login --with-token
+   ```
+3. **Troubleshooting 403 Errors**:
+   - If `git push` fails with a 403, it likely means the current token lacks `workflow` scope (if you edited a workflow file) or has expired.
+   - Solution: Ask the user to generate a new token with the correct scopes.
+
+### Build Pipeline (CI/CD)
+- **Local Build**: Run `npm run build` to verify the site builds without errors before pushing.
+- **Automated Deployment**:
+  - The file `.github/workflows/deploy.yml` runs on every push to `main`.
+  - It uses `withastro/action` to build and deploy to GitHub Pages.
+  - **Important**: Ensure "Read and write permissions" are enabled for `GITHUB_TOKEN` in the repository settings (Settings -> Actions -> General -> Workflow permissions).
 
 ## Aesthetics ("Research Lab")
 - Keep the design clean, minimalist, and "academic".
