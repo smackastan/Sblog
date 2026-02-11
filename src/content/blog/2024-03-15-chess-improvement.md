@@ -2,7 +2,7 @@
 title: 'What can 100,000 chess players tell us about improvement?'
 description: 'Analyzing the relationship between game length and skill improvement in chess using data from 100,000 Lichess players.'
 pubDate: '2024-03-15'
-heroImage: '/image5.png'
+heroImage: '/Sblog/image5.png'
 ---
 
 ## Abstract
@@ -31,7 +31,7 @@ These definitions can be expanded with the learning model of effortful practice.
 
 The design of the study will feature a correlational analysis between the length of chess games for an account, and their improvement over a year. This study will require two operational definitions. The first is the measure of chess skill that will be tracked over time. The Glicko-2 rating system is included in the Lichess database and is generally considered the most reliable measure of chess skill, albeit with a more computationally complex algorithm. This is ideal for my study as the rating was precomputed. It is so frequently used because of its validity as a measurement. Veček et al. (2014) showed that the Glicko-2 system was the most accurate way to rank players. The only downside noted was the complicated formula, but the Lichess database contains the measurement precalculated for all data points. This measurement is also frequently referred to as Elo.
 
-![The correlation between the Elo of a game and the length](/image5.png)
+![The correlation between the Elo of a game and the length](/Sblog/image5.png)
 *Figure 1: The correlation between the Elo of a game and the length*
 
 One challenge involves defining a metric for "length of chess games" that is independent of a player's skill level (Elo). A single number that describes their percentile compared to other players independent of skill is desired. A naive approach would be to take every game the account has played over the year and average the length of each game. This fails because average move length is dependent on Elo (Fig 1). This would skew the results because an account with a higher average game length will simply reflect their higher skill, not their exposure to different game phases. To account for this effect, players must be compared to their peers in a similar Elo.
@@ -46,22 +46,22 @@ Like many other studies using the psychometric approach on chess, the Lichess op
 
 Skill improvement will be calculated with two variables, first observed Elo, and last observed Elo. Players were then ranked by how much their Elo exceeded (or fell short of) the average within their skill group. Skill groups encompass groups of 50. Groups of much lower size would have been ideal, however the sample sizes would become less statistically significant. Groups of 50 strike a balance between sample size per group and the continuity of data. The data for the first column is interpreted as the following: the average player starting with an Elo between 700 and 750 exclusive in January increased about 123 points over the year, with a standard deviation of about 187.
 
-![The average increase and standard deviation computed for change in Elo over the year](/image7.png)
+![The average increase and standard deviation computed for change in Elo over the year](/Sblog/image7.png)
 *Figure 2: The average increase and standard deviation computed for change in Elo over the year*
 
 Similarly each skill group was calculated for average length of chess game, along with the standard deviation.
 
-![Sample of the average length of a game for each Elo category and its standard deviation](/image6.png)
+![Sample of the average length of a game for each Elo category and its standard deviation](/Sblog/image6.png)
 *Figure 3: Sample of the average length of a game for each Elo category and its standard deviation. Shortened for brevity.*
 
 ## Data Pipeline
 
-![Data Pipeline](/image9.png)
+![Data Pipeline](/Sblog/image9.png)
 *Figure 4: Data Pipeline*
 
 In order for these calculations to be performed, a data pipeline was constructed for the main purpose of data accessibility and modularity. The first step in the data pipeline was to download the twelve months of PGN files, which stored collections of about one hundred million games. Each month is about 30 GB.
 
-![The list of all chess games downloaded including size and number of games](/image8.png)
+![The list of all chess games downloaded including size and number of games](/Sblog/image8.png)
 *Figure 5: The list of all chess games downloaded including size and number of games.*
 
 The second step was to decompress each file, which increased each file sevenfold to about 220 GB per file leading to 2.5 TB total. One common option which was employed by Holdaway and Vul (2021) at this point is to decompress the files and analyze the chess games while they are still in memory. This would completely eliminate the need to store 2.5TB of data. I rejected this, because the difficulty of programming required would take more time than it would save. Further, the potential speed increase wasn’t necessary as in the next step, each file would only take a few hours to process. Parsing was done with pgn-extract, which is a program written in C that can parse large PGN files.
@@ -70,7 +70,7 @@ The second step was to decompress each file, which increased each file sevenfold
 
 The PGN format inside of the Lichess database was unsuitable for this project. The data size was far too large, including information that wasn’t necessary to the project. Moreover, sequential searching for all of the games played by a user took over an hour, which wouldn’t be feasible with a sample size of over one hundred thousand users.
 
-![Sample of a full chess game in PGN format](/image2.png)
+![Sample of a full chess game in PGN format](/Sblog/image2.png)
 *Figure 6: Sample of a full chess game in PGN format*
 
 Therefore, I used pgn-extract to extract the players, their Elos, the result, the time control and the length of the game. Each of these values is necessary to filter for the correct games, and to construct the length of the game and change in Elo variables. The WhiteElo and BlackElo refer to the Glicko-2 rating system. The first widely used rating system in chess was created by Arpad Elo. For historical and convenience reasons, many in the chess community refer to any rating system as “Elo” resulting in the naming convention on the PGN format (Veček et al., 2014).
@@ -79,12 +79,12 @@ Rapid games in chess have a time control closer to ten minutes, compared to blit
 
 ## Databasing
 
-![Resulting database structure for chess games](/image1.png)
+![Resulting database structure for chess games](/Sblog/image1.png)
 *Figure 7: Resulting database structure for chess games.*
 
 Prior to the database, there were twelve .csv files containing games. These files were not organized by name and they were difficult to search entirely due to being separate. The database solved both of these issues. The postgres database stored all of the games and players to be analyzed. The games tab contained about 18,000,000 games, each with the winner’s name, Elo, and how many moves it took them to win. This allows for the searching of all the games of an account across the year within a few milliseconds. The structure of the database lends itself to my project.
 
-![Resulting database structure for chess accounts](/image4.png)
+![Resulting database structure for chess accounts](/Sblog/image4.png)
 *Figure 8: Resulting database structure for chess accounts.*
 
 The accounts table contains the accounts list of about 100 thousand accounts from earlier, as well as two measurements: first Elo and last Elo. These values are how I compare skill increases or decreases over the year. The database also had a games table with the necessary information. An extra column of account_id was added to the games table. By adding this column and indexing it, the search for all of the games matching an account went down from two minutes to several milliseconds.
@@ -95,7 +95,7 @@ After the database was set up to be queried by username, the application of stat
 
 Next, to calculate game standard deviations for a player, each player had their corresponding games pulled from the database. First, the python script would check what their Elo was while they were playing that game. Next, it would search the table to figure out what range they were in. This is necessary to figure out how long their game should be on average. It would then compute a z score for that game, based on how above or below average the length of their game was. After creating and averaging all of the z scores for an account, the result is a single number that represents how above or below average they were in game length over the year. After performing this operation for every account, they can be ranked in terms of their games’ lengths over the year. That value can then be compared to the rank of their growth compared to their peers. This is known as a Spearman correlation. It is used here as the density of the length of chess games is not a normal distribution. It has a right skew due to the lack of restrictions on total game length.
 
-![Ply vs Change in Elo](/image3.png)
+![Ply vs Change in Elo](/Sblog/image3.png)
 *Figure 9: Ply is on the x axis and change in Elo is on the y axis. Change in Elo is measured in standard deviations; ply is unitless*
 
 ## Discussion
