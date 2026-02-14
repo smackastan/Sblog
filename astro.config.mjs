@@ -8,8 +8,7 @@ import rehypeKatex from 'rehype-katex';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://andrewashman.github.io', // Placeholder
-  base: '/Sblog', // Assuming repo name is Sblog
+  site: 'https://ashmanlab.com',
   vite: {
     plugins: [tailwindcss()],
   },

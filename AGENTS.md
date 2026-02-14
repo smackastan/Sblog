@@ -35,7 +35,7 @@ This file contains technical instructions for AI agents working on this Data Sci
 ### Repository Information
 - **URL**: `https://github.com/smackastan/Sblog`
 - **Branch**: `main` (default for deployment)
-- **Deployment URL**: `https://smackastan.github.io/Sblog/`
+- **Deployment URL**: `https://ashmanlab.com`
 
 ### Authentication for Agents
 FUTURE AGENT: If you encounter authentication issues when pushing to this repository, follow these steps:

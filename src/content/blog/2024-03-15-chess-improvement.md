@@ -17,7 +17,7 @@ To test this, I needed data—a lot of it. The Lichess dataset is enormous, with
 ### 1. Ingestion & Parsing
 The raw data consisted of **12 months of PGN files**, totaling about **2.5 TB** uncompressed. Python was too slow for parsing this volume of text, so I used **`pgn-extract`**, a high-performance C CLI tool, to parse the games.
 
-![Data Pipeline](/Sblog/image9.png)
+![Data Pipeline](/image9.png)
 *Figure 1: The data extraction pipeline from raw PGN to Postgres.*
 
 ### 2. Sampling Strategy
@@ -33,7 +33,7 @@ I loaded the processed data into **PostgreSQL**. The schema linked `Accounts` (t
 
 Here lies the main data science challenge: **Better players play longer games.**
 
-![Correlation between Elo and Game Length](/Sblog/image5.png)
+![Correlation between Elo and Game Length](/image5.png)
 *Figure 2: As Elo increases, the average game length increases.*
 
 If I simply correlated "average game length" with "Elo growth," I'd just be rediscovering that good players play long games. I needed a metric for **Game Length Tendency** that was independent of skill.
@@ -51,7 +51,7 @@ I used a **Spearman Rank Correlation** to compare:
 
 ### The Verdict
 
-![Scatter plot of Game Length vs Improvement](/Sblog/image3.png)
+![Scatter plot of Game Length vs Improvement](/image3.png)
 *Figure 3: Game Length Tendency (x-axis) vs. Skill Improvement (y-axis).*
 
 **Correlation Coefficient: 0.0632**
