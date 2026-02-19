@@ -65,7 +65,7 @@ Before building any ML model, I implemented a baseline pipeline replicating the 
 
 This serves as the “traditional algorithmic approach.”
 
-(insert graph: Example corneal curvature map with central 3 mm zone highlighted)
+(img1)
 
 ---
 
@@ -182,7 +182,7 @@ This represents a:
 
 **20% reduction in prediction error**
 
-(insert graph: Bar chart comparing prediction error of baseline vs ML)
+(img2)
 
 ---
 
@@ -198,7 +198,7 @@ This represents a:
 
 This was the most encouraging result of the study.
 
-(insert graph: Error reduction in normal vs complex corneas)
+(img3)
 
 ---
 
@@ -212,7 +212,7 @@ The ML model produced:
 
 * More stable axis prediction
 
-(insert graph: Error distribution histogram)
+(img4)
 
 ---
 
