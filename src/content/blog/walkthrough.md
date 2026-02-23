@@ -1,7 +1,7 @@
 ---
 title: 'Semantic Antipode: technical setup'
-description: ''
-pubDate: ''
+description: 'techincal walkthrough'
+pubDate: '2025-12-19'
 ---
 
 
