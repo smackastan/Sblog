@@ -4,15 +4,13 @@ description: "A data-driven approach to mastering the card game Set, applying co
 pubDate: "2025-10-11"
 ---
 
-# Set Trainer: A Puzzle-Based Approach to Beating Your Family at Set
-
 # smackastan.github.io/set-trainer/
 
-Have you ever sat around a table playing *Set* with your family, only to watch in frustration as someone else casually snatched up three cards before you even registered a single pattern? *Set* is a beautiful game of speed, pattern recognition, and focus, but to untrained eyes, it can feel like pure chaos. 
+Have you ever sat around a table playing *Set* with your family, only to watch in frustration as someone else casually snatched up three cards before you even registered a single pattern?
 
-As a data scientist with an interest in the cognitive science of learning, I decided to tackle this problem methodically. I built the **Set Trainer**: a custom web application designed not only to showcase my coding abilities but more importantly, to apply proven learning principles to master the game. The goal of this project? To give you everything you need to consistently beat your family at *Set*.
+I built the **Set Trainer**: a custom web application to apply proven learning principles to master the game, with the goal of giving you everything you need to beat your family at *Set*.
 
-## Unveiling the Mathematics of Set
+## The Mathematics of Set
 
 To build an effective training tool, I first needed to understand the statistical landscape of the game. A standard Set deck consists of 81 cards, with each card possessing four attributes (number, color, shape, shading), and three possible values per attribute. A valid "set" consists of three cards where each attribute is either entirely the same or completely different across the cards.
 
