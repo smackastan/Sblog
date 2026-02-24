@@ -5,19 +5,28 @@
   --font-sans: "Inter", sans-serif;
   --color-cream: #fdfbf7;
   --color-ink: #2c2c2c;
-  --color-accent: #a52a2a; /* Brownish red for academic feel */
+  --color-accent: #a52a2a;
+  /* Brownish red for academic feel */
 }
 
 @layer base {
   body {
     @apply bg-cream text-ink font-sans antialiased;
   }
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-serif font-bold;
   }
+
   a {
     @apply text-accent hover:underline;
   }
+
   /* LaTeX display math centering */
   .katex-display {
     @apply overflow-x-auto py-2;
@@ -27,5 +36,22 @@
 @layer utilities {
   .prose {
     @apply max-w-none;
+  }
+
+  /* Inline code styling */
+  .prose code:not(pre code) {
+    @apply bg-[#f4f1ea] text-accent px-1.5 py-0.5 rounded-md font-mono text-sm border border-[#e0dad0];
+  }
+
+  /* Remove backticks if @tailwindcss/typography is auto-adding them */
+  .prose code::before,
+  .prose code::after {
+    content: none !important;
+  }
+
+  /* Code block styling and margins */
+  .prose pre {
+    @apply rounded-xl p-4 my-6 shadow-sm border border-[#e0dad0] overflow-x-auto text-sm bg-white;
+    /* Using bg-white as a fallback, shiki will override */
   }
 }

@@ -15,13 +15,14 @@ export default defineConfig({
   integrations: [
     mdx({
       syntaxHighlight: 'shiki',
-      shikiConfig: { theme: 'github-dark' }, // Using GitHub Dark for code blocks
+      shikiConfig: { theme: 'rose-pine-dawn' }, // Using a premium light theme for mdx
       remarkPlugins: [remarkMath],
       rehypePlugins: [rehypeKatex],
     }),
     sitemap(),
   ],
   markdown: {
+    shikiConfig: { theme: 'rose-pine-dawn' }, // And plain md
     remarkPlugins: [remarkMath],
     rehypePlugins: [rehypeKatex],
   }
